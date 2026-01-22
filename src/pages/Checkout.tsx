@@ -36,10 +36,15 @@ const Checkout = () => {
     }
 
     useEffect(() => {
-        const interval = setInterval(()=>{
-            setTimer(t=>t-1)
+        const interval = setInterval(() => {
+            setTimer(t => {
+                if (t-1 <= 0) {
+                    clearInterval(interval)
+                }
+                return t - 1
+            })
         }, 1000)
-        return ()=>clearInterval(interval)
+        return () => clearInterval(interval)
     }, [])
 
     return (
